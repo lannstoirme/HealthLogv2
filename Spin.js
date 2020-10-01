@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import { Image, Card } from 'react-native-elements';
-import { AppearanceProvider, useColorScheme } from 'react-native-appearance';
+
 
 export default class Spin extends Component {
   constructor(props) {
@@ -20,18 +20,10 @@ export default class Spin extends Component {
     });
   }
   render() {
-    const colorScheme = useColorScheme();
-    const themeStatusBarStyle = colorScheme === 'light' ? 'dark-content' : 'light-content';
-    const themeTextStyle = colorScheme === 'light' ? style.lightThemeText : styles.darkThemeText;
-    const themeContainerStyle =
-      colorScheme === 'light' ? styles.lightContainer : styles.darkContainer;
     const { selectedStartDate } = this.state;
     const startDate = selectedStartDate ? selectedStartDate.toString() : '';
     return (
-      <SafeAreaView style={[styles.containertheme, themeContainerStyle]}>
-        <StatusBar barStyle={themeStatusBarStyle} />
-        <Text style={[styles.text, themeTextStyle]} />
-     
+      <SafeAreaView style={styles.viewholder}>
       <View style={styles.container}>
         <Text style={styles.text}>How are you today?</Text>
        <View style={styles.calendar}><CalendarPicker
@@ -94,8 +86,7 @@ export default class Spin extends Component {
           
           </View>
       </View>
-    </SafeAreaView>
-
+      </SafeAreaView>
     );
   }
 }
@@ -176,21 +167,8 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     justifyContent: 'center',
   },
-  lightContainer: {
-    backgroundColor: '#2274a5', 
-  },
-  darkContainer: {
-    backgroundColor: '#131b23',
-  },
-  lightThemeText: {
-    color: '#131b23',
-  },
-  darkThemeText: {
-    color: '#816c61'
-  },
-  containertheme: {
+  viewholder: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: '#2274a5'
+  }
 });
